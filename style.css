@@ -1,0 +1,252 @@
+*,*::after,*::before{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body{
+    font-family: Arial, Helvetica, sans-serif;
+    background-color:rgb(140, 66, 31);
+    background-image: url(IMG1.jpg);
+    height: 100vh;
+    overflow: hidden;
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+#calculadora{
+    width: 500px;
+    height: 650px;
+    margin: 0 auto;
+    margin-top: 5vh;
+    border-radius: 1em;
+    background: rgb(128,128,128);
+    background: linear-gradient(160deg, rgba(128,128,128,1) 1%, rgba(84,84,84,1) 23%, rgba(41,41,41,1) 86%); 
+    padding-top: 2em;
+    box-shadow:.3em .6em .3em 0em rgba(255,255,255,.3) inset;
+    position: relative;
+    box-shadow: .5em .5em 1em .3em;
+}
+#calculadora::before{
+    content: "";
+    width: 1.5em;
+    height: 60%;
+    top: 35%;
+    background: rgb(128,128,128);
+    background: linear-gradient(90deg, rgba(128,128,128,1) 1%, rgba(84,84,84,1) 23%, rgba(41,41,41,1) 86%);
+    z-index: 10;
+    position: absolute;
+    clip-path: polygon(0 0, 100% 10%, 100% 90%, 0% 100%);
+    box-shadow: -.5em 0 1em 0em rgb(128,128,128) inset;
+    border-left: 3px solid rgb(128,128,128);
+}
+#calculadora::after{
+    content: "";
+    width: 1.5em;
+    height: 60%;
+    top: 35%;
+    left: calc(100% - 1.5em);
+    background: rgba(41,41,41,1);
+    z-index: 10;
+    position: absolute;
+    clip-path: polygon(0 10%, 100% 0, 100% 100%, 0 90%);
+    box-shadow: -.5em 0 .5em 0em rgb(128,128,128) inset,.3em 0 .5em 0em black inset;
+    border-right: 3px solid rgb(128,128,128);
+}
+#botones-container{
+    margin-top: 4em;
+    display: grid;
+    height: auto;
+    gap: 1em;
+    padding: 4em 3em 1em 3em;
+    position: relative;
+    grid-template-columns: repeat(5,1fr);
+    /* grid-template-rows: repeat(5,1fr); */
+    grid-template-areas: 
+    "on    AC    pot   sqr min"
+    "seven eight nine  div ps"
+    "four  five  six   mul ps"
+    "one   two   three per eq"
+    "sgn   cero  punto del eq"
+;  
+    
+}
+#botones-container::before{
+    content: "";
+    position: absolute;
+    width: 80%;
+    height: 2em;
+    background: rgb(128,128,128);
+    background: linear-gradient(180deg, rgba(128,128,128,1) 1%, rgba(84,84,84,1) 23%, rgba(41,41,41,1) 86%); 
+    border-radius: 2em;
+    left: 10%;
+    top: -2em;
+    box-shadow: .3em .3em .3em .3em black, .3em .3em .3em 0em rgba(255,255,255,.3) inset;
+}
+
+.button{
+    padding: 14px 5px;
+    width: 100%;
+    }
+#display{
+    border: 2px solid black;
+    border-radius: .5rem;
+    text-align: right;
+    font-size: 4rem;
+    font-family: 'Quantico', sans-serif;
+    width: 80%;
+    margin: 0 auto;
+    margin-bottom: .5em;
+    padding: 0 .2em;
+    background: rgb(131,167,128);
+    background: radial-gradient(circle, rgba(131,167,128,1) 0%, rgba(84,115,80,1) 100%);
+    position: relative;
+    box-shadow: 3px 2px 20px 0px rgba(0, 0, 0, .7) inset;
+    overflow: hidden;
+    user-select: none;
+}
+#display::before{
+    content: "";
+    position: absolute;
+    height: .1em;
+    width: 60%;
+    background-color: white;
+    top: 15%;
+    left: 20%;
+    opacity: .4;
+    border-radius: 3px;
+    box-shadow: 0 0 .2em .1em white;
+    z-index: 5;
+}
+/* #display::after{
+    content:"00000000";
+    position: absolute;
+    height: inherit;
+    width: 100%;
+    top: 0em;
+    right: 0.11em;
+    padding: 0 .5em;
+    opacity: .1;
+    text-align: right;
+} */
+@keyframes blink {
+    0%{
+        opacity: 0;
+    }
+    100%{
+        opacity: 1;
+    }
+}
+.display-number{
+    opacity: 0;
+    z-index: 10;
+    color: black;
+}
+.button{
+    color:white;
+    border-radius: 1em;
+    box-shadow: .15em .15em 0em .2em black,.1em .1em .3em -.1em white inset;
+    border: 2px solid black;
+    background: rgb(128,128,128);
+    background: linear-gradient(160deg, rgba(128,128,128,1) 14%, rgba(65,65,65,1) 100%); 
+    font-size: 1.3rem;
+    font-weight: 550;
+    
+    
+}
+.but-con{
+    display: flex;
+}
+
+
+.pressed button{
+    background: rgb(128,128,128);
+    background: linear-gradient(300deg, rgba(128,128,128,1) 5%, rgba(65,65,65,1) 80%);
+}
+.but-del button{
+    box-shadow: .15em .15em 0em .2em black,.15em .15em .3em -.1em rgb(248, 222, 172) inset;
+    background: rgb(236,158,158);
+    background: linear-gradient(160deg, rgb(214, 142, 142) 1%, rgb(194, 79, 79) 23%, rgb(152, 56, 56) 48%);
+}
+
+.del-pressed button{
+    background: rgb(236,158,158);
+    background: linear-gradient(300deg, rgb(214, 142, 142) 1%, rgb(194, 79, 79) 10%, rgba(155, 53, 53, 0.902) 48%);
+}
+
+
+
+.but-1{
+    grid-area: one;
+}
+.but-2{
+    grid-area: two;
+}
+.but-3{
+    grid-area: three;
+}
+.but-4{
+    grid-area: four;
+}
+.but-5{
+    grid-area: five;
+}
+.but-6{
+    grid-area: six;
+}
+.but-7{
+    grid-area: seven;
+}
+.but-8{
+    grid-area: eight;
+}
+.but-9{
+    grid-area: nine;
+}
+.but-0{
+    grid-area: cero;
+}
+.but-AC{
+    grid-area: AC;
+}
+.but-ps{
+    grid-area: ps;
+    display: flex;
+}
+.but-min{
+    grid-area: min;
+}
+.but-mul{
+    grid-area: mul;
+}
+.but-div{
+    grid-area: div;
+}
+.but-per{
+    grid-area: per;
+}
+.but-sgn{
+    grid-area: sgn;
+}
+.but-dot{
+    grid-area: punto;
+}
+.but-pot{
+    grid-area: pot;
+}
+.but-eq{
+    grid-area:eq;
+    display: flex;
+}
+.but-sqr{
+    grid-area: sqr;
+}
+
+.but-del{
+    grid-area: del;
+    
+}
+.but-on{
+    grid-area: on;
+}
