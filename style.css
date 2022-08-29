@@ -19,7 +19,7 @@ body{
     width: 500px;
     height: 650px;
     margin: 0 auto;
-    margin-top: 5vh;
+    margin-top: 2vh;
     border-radius: 1em;
     background: rgb(128,128,128);
     background: linear-gradient(160deg, rgba(128,128,128,1) 1%, rgba(84,84,84,1) 23%, rgba(41,41,41,1) 86%); 
